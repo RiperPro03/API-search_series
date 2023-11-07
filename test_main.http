@@ -1,0 +1,54 @@
+# Test your FastAPI endpoints
+
+GET http://127.0.0.1:8000/
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/search/?query=chat
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/search/?query=friends&top_n=5
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/search/?query=un avion qui crash sur une île&top_n=20
+Accept: application/json
+
+###
+
+POST http://127.0.0.1:8000/similar_series/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "series_list": ["friends", "24"]
+}
+
+###
+
+POST http://127.0.0.1:8000/similar_series/?top_n=3
+Content-Type: application/json
+Accept: application/json
+
+{
+  "series_list": ["greys anatomy", "gossip girl", "heroes"]
+}
+
+###
+
+POST http://127.0.0.1:8000/similar_series/?top_n=10&word_n=10000
+Content-Type: application/json
+Accept: application/json
+
+{
+  "series_list": ["greys anatomy", "gossip girl", "heroes"]
+}
+
+###
+
+GET http://127.0.0.1:8000/all_series/
+Accept: application/json
