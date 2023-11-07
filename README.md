@@ -13,10 +13,10 @@ C'est un projet universitaire avec pour sujet la réalisation d'un site vitrine 
 ## Utilisation
 L'API peut être interrogée directement via les endpoints suivants :
 
-- /: Un endpoint GET qui affiche une page HTML avec des instructions de base.
-- /search/?query=<query>&top_n=<number>: Un endpoint GET pour rechercher des séries avec une option pour limiter le nombre de résultats.
-- /similar_series/: Un endpoint POST pour trouver des séries similaires basées sur une liste de séries.
-- /all_series/: Un endpoint GET qui retourne toutes les séries disponibles.
+- ```/``` : Un endpoint GET qui affiche une page HTML avec des instructions de base.
+- ```/search/?query=<query>&top_n=<number>``` : Un endpoint GET pour rechercher des séries avec une option pour limiter le nombre de résultats.
+- ```/similar_series/``` : Un endpoint POST pour trouver des séries similaires basées sur une liste de séries.
+- ```/all_series/``` : Un endpoint GET qui retourne toutes les séries disponibles.
 
 ## Installation
 ### Prérequis
