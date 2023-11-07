@@ -178,14 +178,19 @@ async def root():
 
     <p><strong>Utilisation:</strong></p>
     <ol>
-        <li>Pour rechercher des séries, utilisez le endpoint <code>/search/</code> avec le paramètre <code>query</code> pour indiquer votre requête. 
+        <li>
+            Pour rechercher des séries, utilisez le endpoint <code>/search/</code> avec le paramètre <code>query</code> pour indiquer votre requête. 
             <br>Par exemple : <code>/search/?query=nom_de_la_série</code>
         </li>
-        <li>Vous pouvez également limiter le nombre de résultats en utilisant le paramètre <code>top_n</code>. 
+        <li>
+            Vous pouvez également limiter le nombre de résultats en utilisant le paramètre <code>top_n</code>. 
             <br>Par exemple : <code>/search/?query=nom_de_la_série&top_n=10</code> retournera les 10 meilleures séries basées sur votre recherche.
         </li>
         <li>Pour obtenir des séries similaires à une liste de séries, utilisez le endpoint <code>/similar_series/</code> et envoyez un POST avec une liste de noms de séries.
-        <br>Par exemple : <code>/similar_series/</code> avec le corps <code>{"series_list": ["Lost", "The Walking Dead"]}</code> retournera les séries similaires à "Lost" et "The Walking Dead".
+            <br>Par exemple : <code>/similar_series/</code> avec le corps <code>{"series_list": ["Lost", "The Walking Dead"]}</code> retournera les séries similaires à "Lost" et "The Walking Dead".
+        </li>
+        <li>
+            Pour obtenir la liste de toutes les séries disponibles, utilisez le endpoint <code>/all_series/</code>.
         </li>
     </ol>
     """
