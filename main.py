@@ -108,6 +108,8 @@ def extract_keywords(query):
         nlp = nlp_en
     doc = nlp(query)
     keywords = [token.text for token in doc if token.pos_ in ["NOUN", "VERB", "PROPN"]]
+    if query not in keywords and query in all_series_names:
+        keywords.insert(0, query)
     return keywords
 
 
@@ -135,10 +137,13 @@ def recherche(query):
             else:
                 scores[serie] = score
     for serie_name in all_series_names:
-        if serie_name.lower() in [mot.lower() for mot in mots]:
+        if serie_name.lower() == mots[0].lower():
+            scores[serie_name] = scores.get(serie_name, 0) + 2500
+        elif serie_name.lower() in [mot.lower() for mot in mots]:
             scores[serie_name] = scores.get(serie_name, 0) + 2000
         elif serie_name.lower() == query.lower():
             scores[serie_name] = scores.get(serie_name, 0) + 1000
+
     sorted_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
     return sorted_scores
 

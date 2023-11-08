@@ -97,65 +97,65 @@
 #     if image_url:
 #         download_image(image_url, 'img-series', f'{series}.jpg')
 
-import json
-import math
-
-# Charger l'index inversé
-with open('index_inversé.json', 'r', encoding='utf-8') as f:
-    index_inverse = json.load(f)
-
-N = len(index_inverse)  # Nombre total de documents
-k1 = 1.5  # Ces valeurs sont généralement utilisées dans la littérature BM25
-b = 0.75
-
-# Calculer la longueur moyenne des documents
-avg_dl = sum(len(info['documents']) for term, info in index_inverse.items()) / N
-
-
-def bm25(idf, tf, dl):
-    # Calculer le score BM25 pour un terme
-    return idf * (tf * (k1 + 1)) / (tf + k1 * (1 - b + b * (dl / avg_dl)))
-
-
-def recherche(query):
-    mots = query.split()
-    scores = {}
-
-    # Liste des noms de toutes les séries dans l'index inversé
-    all_series_names = {serie for term, info in index_inverse.items() for serie in info['documents']}
-
-    # Pour chaque mot dans la requête
-    for mot in mots:
-        if mot in index_inverse:
-            df = index_inverse[mot]['document_frequency']
-            idf = math.log((N - df + 0.5) / (df + 0.5) + 1.0)
-            for serie, info in index_inverse[mot]['documents'].items():
-                tf = info['term_frequency']
-                dl = len(index_inverse[mot]['documents'])  # Longueur du document
-                score = bm25(idf, tf, dl)
-                # Cumuler les scores
-                if serie in scores:
-                    scores[serie] += score
-                else:
-                    scores[serie] = score
-
-    # Si la requête correspond exactement à un nom de série, donner la priorité
-    for serie_name in all_series_names:
-        if serie_name.lower() == query.lower():
-            scores[serie_name] = scores.get(serie_name, 0) + 1000  # valeur arbitrairement élevée pour garantir la première place
-
-    # Classez les séries en fonction de leur score
-    sorted_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
-
-    # Retournez les noms des séries
-    top_series_names = [item[0] for item in sorted_scores]
-
-    return top_series_names
-
-
-# Test
-query = "avion"
-print(recherche(query))
+# import json
+# import math
+#
+# # Charger l'index inversé
+# with open('index_inversé.json', 'r', encoding='utf-8') as f:
+#     index_inverse = json.load(f)
+#
+# N = len(index_inverse)  # Nombre total de documents
+# k1 = 1.5  # Ces valeurs sont généralement utilisées dans la littérature BM25
+# b = 0.75
+#
+# # Calculer la longueur moyenne des documents
+# avg_dl = sum(len(info['documents']) for term, info in index_inverse.items()) / N
+#
+#
+# def bm25(idf, tf, dl):
+#     # Calculer le score BM25 pour un terme
+#     return idf * (tf * (k1 + 1)) / (tf + k1 * (1 - b + b * (dl / avg_dl)))
+#
+#
+# def recherche(query):
+#     mots = query.split()
+#     scores = {}
+#
+#     # Liste des noms de toutes les séries dans l'index inversé
+#     all_series_names = {serie for term, info in index_inverse.items() for serie in info['documents']}
+#
+#     # Pour chaque mot dans la requête
+#     for mot in mots:
+#         if mot in index_inverse:
+#             df = index_inverse[mot]['document_frequency']
+#             idf = math.log((N - df + 0.5) / (df + 0.5) + 1.0)
+#             for serie, info in index_inverse[mot]['documents'].items():
+#                 tf = info['term_frequency']
+#                 dl = len(index_inverse[mot]['documents'])  # Longueur du document
+#                 score = bm25(idf, tf, dl)
+#                 # Cumuler les scores
+#                 if serie in scores:
+#                     scores[serie] += score
+#                 else:
+#                     scores[serie] = score
+#
+#     # Si la requête correspond exactement à un nom de série, donner la priorité
+#     for serie_name in all_series_names:
+#         if serie_name.lower() == query.lower():
+#             scores[serie_name] = scores.get(serie_name, 0) + 1000  # valeur arbitrairement élevée pour garantir la première place
+#
+#     # Classez les séries en fonction de leur score
+#     sorted_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+#
+#     # Retournez les noms des séries
+#     top_series_names = [item[0] for item in sorted_scores]
+#
+#     return top_series_names
+#
+#
+# # Test
+# query = "avion"
+# print(recherche(query))
 
 import math
 from pymongo import MongoClient
