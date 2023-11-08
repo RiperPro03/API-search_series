@@ -8,7 +8,7 @@ C'est un projet universitaire avec pour sujet la réalisation d'un site vitrine 
 ## Fonctionnalités
 
 - **Recherche de séries** : Permet aux utilisateurs de trouver des séries en saisissant des mots-clés. Par exemple, les mots "crash", "avion", "île" devraient retourner la série "Lost" parmi les premiers résultats.
-- **Recommandation de séries** : Suggère des séries similaires à l'utilisateur en fonction du contenu des sous-titres et de la sémantique des séries consultées.
+- **Recommandation de séries** : Suggère des séries similaires à une liste de séries données.
 
 ## Utilisation
 L'API peut être interrogée directement via les endpoints suivants :
