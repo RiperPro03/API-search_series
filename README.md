@@ -35,7 +35,7 @@ Pour installer les dépendances nécessaires, exécutez :
 
 ```bash
 ## Cration de l'environnement virtuel
-python -m venv mon_env
+python3 -m venv mon_env
 cd mon_env
 ```
 Mettre les fichiers du projet dans le dossier mon_env puis faire:
