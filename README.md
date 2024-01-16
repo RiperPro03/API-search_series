@@ -46,14 +46,22 @@ cd mon_env
 ```
 Mettre les fichiers du projet dans le dossier mon_env puis faire:
 ```bash
+## Entrer dans l'environnement virtuelle
 source bin/activate
+```
+```bash
+## Installer toutes les bibliothèques requises
 pip install -r requirements.txt
 ```
 
 ## Démarrage
-Pour lancer le serveur de développement :
+Pour lancer l'API :
 
 ```bash
+## Entrer dans l'environnement virtuel
 source bin/activate
+```
+```bash
+## Lancer le serveur
 uvicorn main:app --host 127.0.0.1 --port 8000 
 ```
