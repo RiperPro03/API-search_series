@@ -2,7 +2,7 @@
 
 Ce projet est une API de recherche de séries utilisant le modèle BM25 pour le classement des documents, intégré avec une interface FastAPI pour les interactions et MongoDB pour le stockage des données.
 
-C'est un projet universitaire avec pour sujet la réalisation d'un site vitrine pour les séries TV. En utilisant les fichiers de sous-titres de 128 séries, nous avons développé un backend robuste qui offre deux fonctionnalités clés : une fonction de recherche et une fonction de recommandation de séries.
+C'est un projet universitaire avec pour sujet la réalisation d'un site vitrine pour les séries TV. En utilisant les fichiers de sous-titres de 126 séries, nous avons développé un backend robuste qui offre deux fonctionnalités clés : une fonction de recherche et une fonction de recommandation de séries.
 
 # Authors
 
