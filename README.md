@@ -101,6 +101,7 @@ index_inversé_MongoDB.json :
   }
 } ...
 ```
+Si vous voulez utiliser votre base de données MongoDB importer le fichier index_inversé_MongoDB.json pour remplir votre base de données.
 
 ## Démarrage
 
