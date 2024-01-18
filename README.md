@@ -31,8 +31,10 @@ L'API peut être interrogée directement via les endpoints suivants :
 
 - Python 3.8+
 - FastAPI
-- Uvicorn (pour le déploiement local)
-- Spacy, avec les modèles `fr_core_news_sm` et `en_core_web_sm` pour la tokenisation et l'analyse linguistique.
+- Uvicorn
+- Spacy, avec les modèles `fr_core_news_sm` et
+`en_core_web_sm` pour la tokenisation et l’analyse
+linguistique.
 - MongoDB
 - Pymongo
 - Langdetect
@@ -44,24 +46,76 @@ Pour installer les dépendances nécessaires, exécutez :
 python3 -m venv mon_env
 cd mon_env
 ```
-Mettre les fichiers du projet dans le dossier mon_env puis faire:
+
+Mettre les fichiers du projet dans le dossier “mon_env” puis faire:
+
 ```bash
 ## Entrer dans l'environnement virtuelle
 source bin/activate
 ```
+
 ```bash
 ## Installer toutes les bibliothèques requises
 pip install -r requirements.txt
 ```
 
+Modifier `main.py` à la ligne 20 si vous voulez modifier pour mettre votre propre base de données
+
+```python
+# Connexion à MongoDB
+# pour la BD locale : mongodb://localhost:27017
+# pour la BD distante : mongodb+srv://riperpro:IBkTL4m1H4zZvzsl@cluster0.urnuehu.mongodb.net/BD_DataVisualizer?retryWrites=true&w=majority
+client = MongoClient("mongodb+srv://riperpro:IBkTL4m1H4zZvzsl@cluster0.urnuehu.mongodb.net/BD_DataVisualizer?retryWrites=true&w=majority")
+db = client['SAE']
+collection = db['motsTF']
+```
+
+La base de données est générer à partir d’un fichier index_inversé_MongoDB.json générer par `process.py` qui traite tout les sous-titre donné.
+
+```json
+index_inversé_MongoDB.json :
+{
+  "_id": "stanton",
+  "document_frequency": 20,
+  "documents": {
+      "24": 123,
+      "charmed": 2,
+      "cold case": 4,
+      "criminal minds": 7,
+      "dirt": 2,
+      "ghost whisperer": 4,
+      "gossip girl": 6,
+      "greys anatomy": 5,
+      "heroes": 8,
+      "jericho": 6,
+      "life": 4,
+      "ncis": 8,
+      "oz": 61,
+      "prison break": 16,
+      "smallville": 2,
+      "stargate atlantis": 4,
+      "the o.c": 4,
+      "the shield": 2,
+      "veronica mars": 5,
+      "californication": 1
+  }
+} ...
+```
+
 ## Démarrage
-Pour lancer l'API :
+
+Pour lancer l’API :
 
 ```bash
 ## Entrer dans l'environnement virtuel
 source bin/activate
 ```
+
 ```bash
 ## Lancer le serveur
-uvicorn main:app --host 127.0.0.1 --port 8000 
+uvicorn main:app --host 127.0.0.1 --port 8000
 ```
+
+## Arrêt
+
+Pour arrêter le serveur faire CTRL+C
