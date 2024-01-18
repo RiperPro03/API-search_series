@@ -70,7 +70,7 @@ db = client['SAE']
 collection = db['motsTF']
 ```
 
-La base de données est générée à partir d’un fichier index_inversé_MongoDB.json générer par `process.py` qui traite tous les sous-titres donnés.
+La base de données est générée à partir d’un fichier index_inversé_MongoDB.json généré par `process.py` qui traite tous les sous-titres donnés.
 
 ```json
 index_inversé_MongoDB.json :
